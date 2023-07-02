@@ -1,0 +1,8 @@
+{"points": [
+  {"x": 0.0, "y": 0.0, "configuration":
+  {"QXYSeries.PointConfiguration.Color": "#00ff0000"}},
+  {"x": 4.679359738389085, "y": 0.0, "configuration":
+  {"QXYSeries.PointConfiguration.Color": "#00ff0000"}},
+  {"x": 4.679359738389085, "y": 1.0, "configuration":
+  {"QXYSeries.PointConfiguration.Color": "#ffff0000"}},
+  {"x": 255.0, "y": 1.0, "configuration": {"QXYSeries.PointConfiguration.Color": "#ffd62728"}}]}

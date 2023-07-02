@@ -1,0 +1,73 @@
+group: stuttgart
+t range: [600, 86400]
+x range: [0.005, 2.855]
+y range: [0.005, 1.225]
+sat_con.shape: (144, 123, 286, 2)
+
+group: stanford
+t range: [600, 85800]
+x range: [0.005, 2.855]
+y range: [0.005, 1.295]
+sat_con.shape: (143, 130, 286, 2)
+
+group: melbourne
+t range: [600, 432000]
+x range: [0.005, 2.855]
+y range: [0.005, 1.225]
+sat_con.shape: (720, 123, 286, 2)
+
+group: lanl
+t range: [600, 86400]
+x range: [0.005, 2.855]
+y range: [0.005, 1.225]
+sat_con.shape: (144, 123, 286, 2)
+
+group: imperial
+t range: [0, 19200]
+x range: [0.005, 2.855]
+y range: [0.005, 1.225]
+sat_con.shape: (33, 123, 286, 2)
+
+group: heriot-watt
+t range: [0, 85800]
+x range: [0.035, 2.825]
+y range: [0.035, 1.225]
+sat_con.shape: (144, 120, 280, 2)
+
+: delft-DARSim
+t range: [600, 86400]
+x range: [0.005, 2.855]
+y range: [0.005, 1.225]
+sat_con.shape: (144, 123, 286, 2)
+
+group: delft-DARTS
+t range: [600, 85800]
+x range: [0.005, 2.855]
+y range: [0.005, 1.225]
+sat_con.shape: (143, 123, 286, 2)
+
+group: csiro
+t range: [600, 432000]
+x range: [0.005, 2.855]
+y range: [0.005, 1.225]
+sat_con.shape: (720, 123, 286, 2)
+
+group: austin
+t range: [1200, 86400]
+x range: [0.005, 2.855]
+y range: [0.005, 1.225]
+sat_con.shape: (143, 123, 286, 2)
+
+group: experiment_run1
+t range: [0, 432000]
+sat_con.shape: (127, 149, 280, 2)
+group: experiment_run2
+t range: [0, 432000]
+sat_con.shape: (126, 149, 280, 2)
+
+group: experiment_run4
+t range: [0, 432000]
+sat_con.shape: (127, 149, 280, 2)
+group: experiment_run5
+t range: [0, 432000]
+sat_con.shape: (123, 149, 280, 2)
