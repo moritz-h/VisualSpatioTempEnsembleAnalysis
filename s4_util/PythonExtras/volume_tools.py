@@ -15,10 +15,10 @@ import numpy as np
 import scipy.ndimage
 import scipy.misc
 import h5py
-import PythonExtras.numpy_extras as npe
-from PythonExtras import file_tools
-from PythonExtras.BufferedNdArray import BufferedNdArray
-from PythonExtras.CppWrapper import CppWrapper
+import s4_util.PythonExtras.numpy_extras as npe
+from s4_util.PythonExtras import file_tools
+from s4_util.PythonExtras.BufferedNdArray import BufferedNdArray
+from s4_util.PythonExtras.CppWrapper import CppWrapper
 
 from deprecated import deprecated
 

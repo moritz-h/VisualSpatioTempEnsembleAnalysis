@@ -1,4 +1,3 @@
-import copy
 import math
 import os.path
 import random
@@ -24,9 +23,11 @@ from pybrutil.np_util.data import interp_variables
 
 import keras
 import json
+import io
 import pickle
 from s4_util.Siamese.layers import CUSTOM_KERAS_LAYERS
 from s4_util.Siamese.data_loading import downsample_volume
+from s4_util import PythonExtras
 import numpy as np
 import umap
 
@@ -43,14 +44,14 @@ import warnings
 # run_dir_multivar = "C:/Users/bauerrn/Projekte/S4/out/fluidflower_ensemble_multivar.py/221011-184021-bitter-rain_fluidflower_ensemble_multivar"
 
 # rescaled full spatial
-run_dir_con = "C:\\Users\\bauerrn\\Projekte\\S4\\out\\rescaled_ff_con\\221125-103018-super-feather_fluidflower_ensemble_concentration"
-run_dir_sat = "C:\\Users\\bauerrn\\Projekte\\S4\\out\\rescaled_fluidflower_ensemble_saturation.py\\221123-195603-wandering-recipe_fluidflower_ensemble_saturation"
-run_dir_multivar = "C:\\Users\\bauerrn\\Projekte\\S4\\out\\rescaled_fluidflower_ensemble_multivar.py\\221123-200047-sweet-hill_fluidflower_ensemble_multivar"
+run_dir_con = "./models/run_rs_ff_con"
+run_dir_sat = "./models/run_rs_ff_sat"
+run_dir_multivar = "./models/run_rs_ff_multivar"
 
 # rescaled ts
-run_dir_con_ts = "C:\\Users\\bauerrn\\Projekte\\S4\\out\\rs_ts_fluidflower_ensemble_ts_con\\221124-110724-throbbing-fog_fluidflower_ensemble_ts_con"
-run_dir_sat_ts = "C:\\Users\\bauerrn\\Projekte\\S4\\out\\rs_ts_fluidflower_ensemble_ts_saturation\\221123-211417-floral-feather_fluidflower_ensemble_ts_saturation"
-run_dir_multivar_ts = "C:\\Users\\bauerrn\\Projekte\\S4\\out\\rs_ts_fluidflower_ensemble_ts_multivar\\221123-222817-lucky-water_fluidflower_ensemble_ts_multivar"
+run_dir_con_ts = "./models/run_rs_ts_con"
+run_dir_sat_ts = "./models/run_rs_ts_sat"
+run_dir_multivar_ts = "./models/run_rs_ts_multivar"
 
 # run_dir_patch_size_55k = "C:/Users/bauerrn/Projekte/S4/out/fluidflower_ensemble3_time_space/221111-174954-bold-snowflake_fluidflower_ensemble_time_space"  #  "C:/Users/bauerrn/Projekte/S4/out/fluidflower_ensemble2_time_space/221027-123234-shy-dawn_fluidflower_ensemble_time_space"
 
@@ -71,6 +72,26 @@ if useFake:
 
 useCache = True
 initWithClearCache = False
+
+class RenameUnpickler(pickle.Unpickler):
+    def find_class(self, module: str, name):
+        renamed_module = module
+        if module.startswith("PythonExtras"):
+            renamed_module = "s4_util.PythonExtras{}".format(module[len("PythonExtras"):])
+
+        if module.startswith("Siamese"):
+            renamed_module = "s4_util.Siamese{}".format(module[len("Siamese"):])
+
+        return super(RenameUnpickler, self).find_class(renamed_module, name)
+
+
+def renamed_load(file_obj):
+    return RenameUnpickler(file_obj).load()
+
+
+def renamed_loads(pickled_bytes):
+    file_obj = io.BytesIO(pickled_bytes)
+    return renamed_load(file_obj)
 
 
 def make_hash():
@@ -190,7 +211,8 @@ def load_encoder_normalizer_and_config(run_dir: str):
 
     # load normalizer
     with open(normalizer_path, "rb") as f:
-        normalizer = pickle.load(f)
+        # normalizer = pickle.load(f)
+        normalizer = renamed_load(f)  # hot fix to deal with changed module
 
     return encoder, normalizer, config
 
@@ -317,7 +339,7 @@ class ProjectionWidget(IQChartView):
             halo_series.setColor(Qt.transparent)
             halo_series.setMarkerSize(self.series_marker_size + 4)
             if group.startswith("experiment"):
-                halo_series.setMarkerShape(halo_series.MarkerShapeStar)
+                halo_series.setMarkerShape(halo_series.MarkerShape.MarkerShapeStar)
                 halo_series.setMarkerSize(self.series_exp_marker_size + 4)
 
         self.serieses = dict()
@@ -341,7 +363,7 @@ class ProjectionWidget(IQChartView):
             series.setName(group)
 
             if group.startswith("experiment"):
-                series.setMarkerShape(series.MarkerShapeStar)
+                series.setMarkerShape(series.MarkerShape.MarkerShapeStar)
 
         # Spline Series
         self.spline_serieses = {group: QLineSeries() for group in self.data_keys}

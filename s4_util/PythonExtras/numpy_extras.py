@@ -8,9 +8,9 @@ import numpy as np
 import scipy.signal
 import h5py
 
-import PythonExtras.logging_tools as logging_tools
-from PythonExtras.CppWrapper import CppWrapper
-from PythonExtras.BufferedNdArray import BufferedNdArray
+import s4_util.PythonExtras.logging_tools as logging_tools
+from s4_util.PythonExtras.CppWrapper import CppWrapper
+from s4_util.PythonExtras.BufferedNdArray import BufferedNdArray
 
 LargeArray = Union[np.ndarray, h5py.Dataset, BufferedNdArray]
 

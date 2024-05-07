@@ -1,12 +1,10 @@
 import json
 import os.path
 import random
-import time
 
 import numpy as np
 import qtpex
 from PySide6.QtCharts import QValueAxis
-from PySide6.QtGui import QPixmap, QPainter
 from PySide6.QtWidgets import QMainWindow, QWidget, QToolButton, QSizePolicy, QFileDialog, QRadioButton, \
     QLabel, QButtonGroup, QCheckBox, QApplication
 from pybrutil.np_util.data import interp_variables
@@ -28,7 +26,6 @@ from src.constants import groups, screenshot_locations, screenshot_randint_max
 
 class MainWindow(QMainWindow):
     def __init__(self, data: dict):
-        # def __init__(self, volume_item_cache_left: dict, volume_item_cache_right: dict):
         super(MainWindow, self).__init__()
         self.ui = Ui_MainWindow()
         self.ui.setupUi(self)
@@ -294,7 +291,8 @@ class MainWindow(QMainWindow):
 
     def run_all_and_save_screenshots(self, with_screenshot: bool):
         """
-        Runs all projection control combinations and saves screenshots for each of them.
+        Runs all projection control combinations and optionally saves screenshots for each of them.
+        Allows to cache results by running all combinations once.
         :return:
         """
         print(f"run all; with screenshots: {with_screenshot}")
@@ -377,10 +375,6 @@ class MainWindow(QMainWindow):
                                         print("screenshot settings: {}".format((palg, pred, pdim, pmet, pdat, self.ui.showSplinesBetweenTimeSteps.isChecked(), self.ui.showSplinesBetweenTimeSteps.isChecked())))
                                         print(f"making screenshot for run w.r.t. spatial data metrics: {total_runs}")
                                         total_runs += 1
-
-                                        # if total_runs > 30:
-                                        #     print("early debug stop")
-                                        #     return
 
                                         if with_screenshot:
                                             self.projection_widget.save_projection_as_screenshot(randints[0])
@@ -485,9 +479,6 @@ class MainWindow(QMainWindow):
             m_yh = v.actual_data_shape[1] / 15
 
             return m_xw, m_yh
-
-        # m_xw = 10
-        # m_yh = 8
 
         def zoom_to_box_a(v: VolumeRenderGraph, ui):
             m_xw, m_yh = compute_mxw_myh(v)
@@ -755,25 +746,11 @@ class MainWindow(QMainWindow):
             for signal, slot in signals_to_slots:
                 getattr(source, signal).connect(check_coupled_and_prevent_loop_wrapper(target, getattr(target, slot)))
 
-            # source.cameraPresetChanged.connect(check_coupled_and_prevent_loop_wrapper(target, target.setCameraPreset))
-            # source.maxZoomLevelChanged.connect(check_coupled_and_prevent_loop_wrapper(target, target.maxZoomLevelChanged))
-            # source.targetChanged.connect(check_coupled_and_prevent_loop_wrapper(target, target.setTarget))
-            # source.wrapXRotationChanged.connect(check_coupled_and_prevent_loop_wrapper(target, target.setWrapXRotation))
-            # source.wrapYRotationChanged.connect(check_coupled_and_prevent_loop_wrapper(target, target.setWrapYRotation))
-            # source.xRotationChanged.connect(check_coupled_and_prevent_loop_wrapper(target, target.setXRotation))
-            # source.yRotationChanged.connect(check_coupled_and_prevent_loop_wrapper(target, target.setYRotation))
-            # source.zoomLevelChanged.connect(check_coupled_and_prevent_loop_wrapper(target, target.setZoomLevel))
-
     def init_projection_control_tool_buttons(self):
         self.init_projection_control_tool_button_actions(self.ui.proj_alg_tb,
                                                          get_attributes(ProjectionWidget.ProjAlgorithm),
                                                          self.projection_widget.set_proj_alg)
         self.ui.proj_alg_tb.setText(self.projection_widget.proj_alg)
-
-        # self.init_projection_control_tool_button_actions(self.ui.proj_temp_size_tb,
-        #                                                  get_attributes(ProjectionWidget.TemporalPatchSize),
-        #                                                  self.projection_widget.set_proj_temp_size)
-        # self.ui.proj_temp_size_tb.setText(self.projection_widget.temp_p_size)
 
         self.init_projection_control_tool_button_actions(self.ui.proj_dim_tb,
                                                          get_attributes(ProjectionWidget.ProjectionDim),
@@ -790,22 +767,10 @@ class MainWindow(QMainWindow):
                                                          self.handle_dis_metric_mode)
         self.ui.proj_dis_metric_tb.setText(self.projection_widget.dissim_measure)
 
-        # self.init_projection_control_tool_button_actions(self.ui.proj_part_strat_tb,
-        #                                                  get_attributes(ProjectionWidget.PartitionStrategy),
-        #                                                  self.projection_widget.set_proj_part_strat)
-        # self.ui.proj_part_strat_tb.setText(self.projection_widget.part_strat)
-
         self.init_projection_control_tool_button_actions(self.ui.proj_data,
                                                          get_attributes(ProjectionWidget.DataMode),
                                                          self.handle_time_series_data_mode)
         self.ui.proj_data.setText(self.projection_widget.data_mode)
-
-        # Hide projection strat. and temp. size button
-        # self.ui.proj_part_strat_tb.setVisible(False)
-        # self.ui.proj_part_strat_label.setVisible(False)
-#
-        # self.ui.proj_temp_size_tb.setVisible(False)
-        # self.ui.proj_temp_size_label.setVisible(False)
 
     @Slot(str, int, int, str)
     def group_clicked(self, group: str, time_step_from: int, time_step_to: int, btn: str):
@@ -831,8 +796,6 @@ class MainWindow(QMainWindow):
 
         if self.ui.coupleTimeStep.isChecked():
             uis_to_use = [self.leftUi, self.rightUi]  # override uis to use with both
-
-        # print(time_step_from, time_step_to)
 
         for ui in uis_to_use:
             ui.volume_renderer.axisZ().setRange(time_step_from, time_step_to)
@@ -887,17 +850,10 @@ class MainWindow(QMainWindow):
             self.set_fluidflower_data(self.rightUi.selectDataLabel.text(), self.rightUi, True)
 
     def scale_volume(self, x: np.array):
-        # min_at_1_minus_p_percent = [min([np.sort(self.data[group]["sat_con"][:, :, :, i].flatten())
-        #                         [int((1-p) * len(self.data[group]["sat_con"][:, :, :, i].flatten()))]
-        #                         for group in self.data]) for i in range(2)]
-
         min_d = self.min_
         max_d = self.max_at_p_percent  # [max([self.data[group]["sat_con"][:, :, :, i].max() for group in self.data]) for i in range(2)]
 
         x_ = interp_variables(x.copy(), xp=lambda _, i: (min_d[i], max_d[i]), fp=lambda _, i: (0, 255))  # [:144]
-
-        # scale with the same conditions
-        # x_ = interp_variables(x.copy(), xp=lambda _, i: (min(min_d), max(max_d)), fp=lambda _, i: (0, 255))
 
         # clip to range
         return np.clip(x_, 0, 255)

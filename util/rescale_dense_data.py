@@ -3,13 +3,25 @@ import numpy as np
 import pandas
 import pybrutil.np_util.data
 
+import sys
+
+print("got args:", sys.argv)
+
+
+assert len(sys.argv) == 3, "expecting first argument to be the source directory and second to be the destination"
+
+assert os.path.exists(sys.argv[1]) and os.path.isdir(sys.argv[1]), \
+    "source data path must be an existing directory"
+assert os.path.exists(sys.argv[2]) and os.path.isdir(sys.argv[2]), \
+    "destination data path must be an existing directory"
+
+ffdir = sys.argv[1]  # "C:/Users/bauerrn/Data/Fluidflower"
+ffdir_out = sys.argv[2]  # "C:/Users/bauerrn/Data/Fluidflower_rescaled"
+
 groups = ['stuttgart', 'stanford', 'melbourne', 'lanl', 'imperial', 'heriot-watt',
           'delft-DARSim', 'delft-DARTS', 'csiro', 'austin']
 
 experimental = "experiment"
-
-ffdir = "C:/Users/bauerrn/Data/Fluidflower"
-ffdir_out = "C:/Users/bauerrn/Data/Fluidflower_rescaled"
 
 
 def load_data():

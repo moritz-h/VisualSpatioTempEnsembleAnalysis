@@ -4,8 +4,8 @@ import os
 import scipy.ndimage
 import numpy as np
 
-from PythonExtras import volume_tools, numpy_extras as npe
-from Siamese.data_types import *
+from s4_util.PythonExtras import volume_tools, numpy_extras as npe
+from s4_util.Siamese.data_types import *
 
 
 class EnsembleMemberMetadata(NamedTuple):

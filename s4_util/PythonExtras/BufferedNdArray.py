@@ -6,7 +6,7 @@ from typing import Callable, Tuple, List, Dict, Any, Union, Type, Iterable
 
 import numpy as np
 
-from PythonExtras.CppWrapper import CppWrapper
+from s4_util.PythonExtras.CppWrapper import CppWrapper
 
 
 class BufferedNdArray:

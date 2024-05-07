@@ -1,19 +1,31 @@
 import os
-import pathlib
 import re
 import numpy as np
 import pandas
 from pathlib import Path
 
 
-fluidflower_basedir = "C:/Users/bauerrn/Projekte/Fluidflower/"
+import sys
+
+print("got args:", sys.argv)
+
+
+assert len(sys.argv) == 3, "expecting first argument to be the data directory of the cloned repositories and the " \
+                           "second to be the data directory to store the data"
+
+assert os.path.exists(sys.argv[1]) and os.path.isdir(sys.argv[1]), \
+    "source data path must be an existing directory"
+assert os.path.exists(sys.argv[2]) and os.path.isdir(sys.argv[2]), \
+    "destination data path must be an existing directory"
+
+fluidflower_basedir = sys.argv[1]  # "C:/Users/bauerrn/Projekte/Fluidflower/"
+out_dir = sys.argv[2]  # "C:/Users/bauerrn/Data/Fluidflower"
 
 experiment_group_name = "experiment"
 
 experiment_group_dir = os.path.join(fluidflower_basedir, experiment_group_name)
 experiment_spatial_maps_data_dir = os.path.join(experiment_group_dir, "benchmarkdata", "spatial_maps")
 
-out_dir = "C:/Users/bauerrn/Data/Fluidflower"
 out_base_filename = "segmentation"
 
 seconds_pattern = re.compile(r""".*segmentation_(?P<seconds>\d+)s?(?!h)\.csv$""")

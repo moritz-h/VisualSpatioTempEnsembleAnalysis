@@ -1,10 +1,24 @@
 import functools
 import os
-import re
 
 import pandas
 
-fluidflower_basedir = "C:/Users/bauerrn/Projekte/Fluidflower/"
+
+import sys
+
+print("got args:", sys.argv)
+
+
+assert len(sys.argv) == 3, "expecting first argument to be the data directory of the cloned repositories and the " \
+                           "second to be the data directory to store the data"
+
+assert os.path.exists(sys.argv[1]) and os.path.isdir(sys.argv[1]), \
+    "source data path must be an existing directory"
+assert os.path.exists(sys.argv[2]) and os.path.isdir(sys.argv[2]), \
+    "destination data path must be an existing directory"
+
+fluidflower_basedir = sys.argv[1]  # "C:/Users/bauerrn/Projekte/Fluidflower/"
+out_dir = sys.argv[2]  # "C:/Users/bauerrn/Data/Fluidflower"
 
 
 def ffjoin(*args):
@@ -15,10 +29,10 @@ def ffjoin(*args):
 sparse_data_time_series_spatial_parameters_location = {
     "stuttgart": ffjoin("stuttgart"),
     "stanford": ffjoin("stanford"),
-    "mit": ffjoin("mit"),
+    # "mit": ffjoin("mit"),
     "melbourne": ffjoin("melbourne"),
     "lanl": ffjoin("lanl"),
-    "imperial": ffjoin("imperial"),
+    # "imperial": ffjoin("imperial"),
     "heriot-watt": ffjoin("modeling", "sparse_data", "heriot-watt"),
     "delft-DARSim": ffjoin("delft", "delft-DARSim"),
     "delft-DARTS": ffjoin("delft", "delft-DARTS"),
@@ -32,8 +46,6 @@ search_files = {
     "spatial_parameters": "spatial_parameters.csv",
     "time_series": "time_series.csv"
 }
-
-out_dir = "C:/Users/bauerrn/Data/Fluidflower"
 
 expected_keys = {
     "p_1": "pressure [N/m^2] (sensor 1)",

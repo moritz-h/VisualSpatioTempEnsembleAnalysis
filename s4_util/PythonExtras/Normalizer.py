@@ -3,7 +3,7 @@ from typing import *
 
 import numpy as np
 
-from PythonExtras import numpy_extras as npe
+from s4_util.PythonExtras import numpy_extras as npe
 
 
 class Normalizer:

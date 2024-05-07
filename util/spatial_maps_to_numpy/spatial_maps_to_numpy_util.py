@@ -3,11 +3,7 @@ import os
 import csv
 import re
 
-import matplotlib
-import matplotlib.pyplot as plt
 import numpy as np
-
-# matplotlib.use("TkAgg")
 
 
 seconds_pattern = re.compile(r""".*spatial_map_(?P<seconds>\d+)s?(?!h)\.csv$""")
@@ -99,19 +95,6 @@ def spatial_maps_to_numpy(filenames: list):
             data_mat[i, y_idx, x_idx] = dt[j]
 
     return t, np.array(y_new), np.array(x_new), np.array(data_mat)
-
-
-def vis(d):
-    while True:
-        for dt in d:
-            plt.cla()
-            plt.imshow(dt[0, :, :, 0])
-            plt.pause(0.1)
-
-        for dt in d:
-            plt.cla()
-            plt.imshow(dt[0, :, :, 1])
-            plt.pause(0.1)
 
 
 def save_spatial_maps_data(t: np.array, y: np.array, x: np.array, data: np.array, out_dir: str,

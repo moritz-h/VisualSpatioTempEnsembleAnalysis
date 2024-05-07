@@ -7,11 +7,11 @@ from typing import Callable, Tuple, List, Dict, Any, Union, Type
 
 import numpy as np
 
-import PythonExtras.numpy_extras as npe
-import PythonExtras.patching_tools as patching_tools
-import PythonExtras.logging_tools as logging_tools
-from PythonExtras.CppWrapper import CppWrapper
-from PythonExtras.BufferedNdArray import BufferedNdArray
+import s4_util.PythonExtras.numpy_extras as npe
+import s4_util.PythonExtras.patching_tools as patching_tools
+import s4_util.PythonExtras.logging_tools as logging_tools
+from s4_util.PythonExtras.CppWrapper import CppWrapper
+from s4_util.PythonExtras.BufferedNdArray import BufferedNdArray
 
 
 class MtPatchExtractor:

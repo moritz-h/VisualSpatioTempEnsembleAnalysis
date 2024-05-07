@@ -12,8 +12,8 @@ import numpy as np
 
 
 if TYPE_CHECKING:
-    from PythonExtras.BufferedNdArray import BufferedNdArray
-    from PythonExtras.MtPatchExtractor import MtPatchExtractor
+    from s4_util.PythonExtras.BufferedNdArray import BufferedNdArray
+    from s4_util.PythonExtras.MtPatchExtractor import MtPatchExtractor
 
 
 # todo Rework this class to just help calling the DLL code, instead of wrapping every function.
