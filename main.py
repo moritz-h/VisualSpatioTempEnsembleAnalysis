@@ -45,7 +45,7 @@ def main():
     format.setDepthBufferSize(24)
     format.setStencilBufferSize(8)
     format.setVersion(4, 6)
-    format.setProfile(QSurfaceFormat.CoreProfile)
+    format.setProfile(QSurfaceFormat.OpenGLContextProfile.CoreProfile)
     QSurfaceFormat.setDefaultFormat(format)
 
     # load data into RAM
