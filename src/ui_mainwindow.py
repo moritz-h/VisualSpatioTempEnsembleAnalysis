@@ -50,12 +50,12 @@ class Ui_MainWindow(object):
         self.gridLayout_2.setObjectName(u"gridLayout_2")
         self.gridLayout_8 = QGridLayout()
         self.gridLayout_8.setObjectName(u"gridLayout_8")
-        self.gridLayout_8.setSizeConstraint(QLayout.SetDefaultConstraint)
+        self.gridLayout_8.setSizeConstraint(QLayout.SizeConstraint.SetDefaultConstraint)
         self.gridLayout_8.setContentsMargins(0, -1, -1, -1)
         self.line = QFrame(self.centralwidget)
         self.line.setObjectName(u"line")
-        self.line.setFrameShape(QFrame.VLine)
-        self.line.setFrameShadow(QFrame.Sunken)
+        self.line.setFrameShape(QFrame.Shape.VLine)
+        self.line.setFrameShadow(QFrame.Shadow.Sunken)
 
         self.gridLayout_8.addWidget(self.line, 0, 1, 1, 1)
 
@@ -67,7 +67,7 @@ class Ui_MainWindow(object):
         self.gridLayout.setObjectName(u"gridLayout")
         self.gridLayout_7 = QGridLayout()
         self.gridLayout_7.setObjectName(u"gridLayout_7")
-        self.gridLayout_7.setSizeConstraint(QLayout.SetDefaultConstraint)
+        self.gridLayout_7.setSizeConstraint(QLayout.SizeConstraint.SetDefaultConstraint)
         self.horizontalLayout = QHBoxLayout()
         self.horizontalLayout.setObjectName(u"horizontalLayout")
         self.leftViewContainer = QWidget(self.widget_2)
@@ -77,8 +77,8 @@ class Ui_MainWindow(object):
 
         self.line_2 = QFrame(self.widget_2)
         self.line_2.setObjectName(u"line_2")
-        self.line_2.setFrameShape(QFrame.VLine)
-        self.line_2.setFrameShadow(QFrame.Sunken)
+        self.line_2.setFrameShape(QFrame.Shape.VLine)
+        self.line_2.setFrameShadow(QFrame.Shadow.Sunken)
 
         self.horizontalLayout.addWidget(self.line_2)
 
@@ -121,8 +121,8 @@ class Ui_MainWindow(object):
 
         self.line_3 = QFrame(self.widget_2)
         self.line_3.setObjectName(u"line_3")
-        self.line_3.setFrameShape(QFrame.HLine)
-        self.line_3.setFrameShadow(QFrame.Sunken)
+        self.line_3.setFrameShape(QFrame.Shape.HLine)
+        self.line_3.setFrameShadow(QFrame.Shadow.Sunken)
 
         self.gridLayout_7.addWidget(self.line_3, 1, 0, 1, 1)
 
@@ -187,8 +187,8 @@ class Ui_MainWindow(object):
 
         self.line_4 = QFrame(self.groupBox_3)
         self.line_4.setObjectName(u"line_4")
-        self.line_4.setFrameShape(QFrame.VLine)
-        self.line_4.setFrameShadow(QFrame.Sunken)
+        self.line_4.setFrameShape(QFrame.Shape.VLine)
+        self.line_4.setFrameShadow(QFrame.Shadow.Sunken)
 
         self.horizontalLayout_3.addWidget(self.line_4)
 
@@ -225,7 +225,7 @@ class Ui_MainWindow(object):
 
         self.groupBox_2 = QGroupBox(self.controlWidgetContainer)
         self.groupBox_2.setObjectName(u"groupBox_2")
-        sizePolicy = QSizePolicy(QSizePolicy.Preferred, QSizePolicy.Expanding)
+        sizePolicy = QSizePolicy(QSizePolicy.Policy.Preferred, QSizePolicy.Policy.Expanding)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.groupBox_2.sizePolicy().hasHeightForWidth())
@@ -287,70 +287,70 @@ class Ui_MainWindow(object):
         self.proj_alg_label = QLabel(self.groupBox)
         self.proj_alg_label.setObjectName(u"proj_alg_label")
 
-        self.formLayout.setWidget(0, QFormLayout.LabelRole, self.proj_alg_label)
+        self.formLayout.setWidget(0, QFormLayout.ItemRole.LabelRole, self.proj_alg_label)
 
         self.proj_alg_tb = QToolButton(self.groupBox)
         self.proj_alg_tb.setObjectName(u"proj_alg_tb")
-        sizePolicy1 = QSizePolicy(QSizePolicy.Expanding, QSizePolicy.Fixed)
+        sizePolicy1 = QSizePolicy(QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Fixed)
         sizePolicy1.setHorizontalStretch(0)
         sizePolicy1.setVerticalStretch(0)
         sizePolicy1.setHeightForWidth(self.proj_alg_tb.sizePolicy().hasHeightForWidth())
         self.proj_alg_tb.setSizePolicy(sizePolicy1)
-        self.proj_alg_tb.setPopupMode(QToolButton.InstantPopup)
+        self.proj_alg_tb.setPopupMode(QToolButton.ToolButtonPopupMode.InstantPopup)
 
-        self.formLayout.setWidget(0, QFormLayout.FieldRole, self.proj_alg_tb)
+        self.formLayout.setWidget(0, QFormLayout.ItemRole.FieldRole, self.proj_alg_tb)
 
         self.proj_red_label = QLabel(self.groupBox)
         self.proj_red_label.setObjectName(u"proj_red_label")
 
-        self.formLayout.setWidget(1, QFormLayout.LabelRole, self.proj_red_label)
+        self.formLayout.setWidget(1, QFormLayout.ItemRole.LabelRole, self.proj_red_label)
 
         self.proj_red_tb = QToolButton(self.groupBox)
         self.proj_red_tb.setObjectName(u"proj_red_tb")
         sizePolicy1.setHeightForWidth(self.proj_red_tb.sizePolicy().hasHeightForWidth())
         self.proj_red_tb.setSizePolicy(sizePolicy1)
-        self.proj_red_tb.setPopupMode(QToolButton.InstantPopup)
+        self.proj_red_tb.setPopupMode(QToolButton.ToolButtonPopupMode.InstantPopup)
 
-        self.formLayout.setWidget(1, QFormLayout.FieldRole, self.proj_red_tb)
+        self.formLayout.setWidget(1, QFormLayout.ItemRole.FieldRole, self.proj_red_tb)
 
         self.proj_dim_label = QLabel(self.groupBox)
         self.proj_dim_label.setObjectName(u"proj_dim_label")
 
-        self.formLayout.setWidget(2, QFormLayout.LabelRole, self.proj_dim_label)
+        self.formLayout.setWidget(2, QFormLayout.ItemRole.LabelRole, self.proj_dim_label)
 
         self.proj_dim_tb = QToolButton(self.groupBox)
         self.proj_dim_tb.setObjectName(u"proj_dim_tb")
         sizePolicy1.setHeightForWidth(self.proj_dim_tb.sizePolicy().hasHeightForWidth())
         self.proj_dim_tb.setSizePolicy(sizePolicy1)
-        self.proj_dim_tb.setPopupMode(QToolButton.InstantPopup)
+        self.proj_dim_tb.setPopupMode(QToolButton.ToolButtonPopupMode.InstantPopup)
 
-        self.formLayout.setWidget(2, QFormLayout.FieldRole, self.proj_dim_tb)
+        self.formLayout.setWidget(2, QFormLayout.ItemRole.FieldRole, self.proj_dim_tb)
 
         self.proj_dis_metric_label = QLabel(self.groupBox)
         self.proj_dis_metric_label.setObjectName(u"proj_dis_metric_label")
 
-        self.formLayout.setWidget(3, QFormLayout.LabelRole, self.proj_dis_metric_label)
+        self.formLayout.setWidget(3, QFormLayout.ItemRole.LabelRole, self.proj_dis_metric_label)
 
         self.proj_dis_metric_tb = QToolButton(self.groupBox)
         self.proj_dis_metric_tb.setObjectName(u"proj_dis_metric_tb")
         sizePolicy1.setHeightForWidth(self.proj_dis_metric_tb.sizePolicy().hasHeightForWidth())
         self.proj_dis_metric_tb.setSizePolicy(sizePolicy1)
-        self.proj_dis_metric_tb.setPopupMode(QToolButton.InstantPopup)
+        self.proj_dis_metric_tb.setPopupMode(QToolButton.ToolButtonPopupMode.InstantPopup)
 
-        self.formLayout.setWidget(3, QFormLayout.FieldRole, self.proj_dis_metric_tb)
+        self.formLayout.setWidget(3, QFormLayout.ItemRole.FieldRole, self.proj_dis_metric_tb)
 
         self.proj_data_label = QLabel(self.groupBox)
         self.proj_data_label.setObjectName(u"proj_data_label")
 
-        self.formLayout.setWidget(4, QFormLayout.LabelRole, self.proj_data_label)
+        self.formLayout.setWidget(4, QFormLayout.ItemRole.LabelRole, self.proj_data_label)
 
         self.proj_data = QToolButton(self.groupBox)
         self.proj_data.setObjectName(u"proj_data")
         sizePolicy1.setHeightForWidth(self.proj_data.sizePolicy().hasHeightForWidth())
         self.proj_data.setSizePolicy(sizePolicy1)
-        self.proj_data.setPopupMode(QToolButton.InstantPopup)
+        self.proj_data.setPopupMode(QToolButton.ToolButtonPopupMode.InstantPopup)
 
-        self.formLayout.setWidget(4, QFormLayout.FieldRole, self.proj_data)
+        self.formLayout.setWidget(4, QFormLayout.ItemRole.FieldRole, self.proj_data)
 
 
         self.gridLayout_4.addLayout(self.formLayout, 1, 0, 1, 1)
@@ -380,8 +380,8 @@ class Ui_MainWindow(object):
 
         self.line_5 = QFrame(self.groupBox)
         self.line_5.setObjectName(u"line_5")
-        self.line_5.setFrameShape(QFrame.VLine)
-        self.line_5.setFrameShadow(QFrame.Sunken)
+        self.line_5.setFrameShape(QFrame.Shape.VLine)
+        self.line_5.setFrameShadow(QFrame.Shadow.Sunken)
 
         self.horizontalLayout_5.addWidget(self.line_5)
 
@@ -401,8 +401,8 @@ class Ui_MainWindow(object):
 
         self.line_7 = QFrame(self.segThresholdContainerWidget)
         self.line_7.setObjectName(u"line_7")
-        self.line_7.setFrameShape(QFrame.HLine)
-        self.line_7.setFrameShadow(QFrame.Sunken)
+        self.line_7.setFrameShape(QFrame.Shape.HLine)
+        self.line_7.setFrameShadow(QFrame.Shadow.Sunken)
 
         self.verticalLayout_5.addWidget(self.line_7)
 
@@ -461,8 +461,8 @@ class Ui_MainWindow(object):
 
         self.line_6 = QFrame(self.groupBox)
         self.line_6.setObjectName(u"line_6")
-        self.line_6.setFrameShape(QFrame.HLine)
-        self.line_6.setFrameShadow(QFrame.Sunken)
+        self.line_6.setFrameShape(QFrame.Shape.HLine)
+        self.line_6.setFrameShadow(QFrame.Shadow.Sunken)
 
         self.gridLayout_4.addWidget(self.line_6, 3, 0, 1, 1)
 

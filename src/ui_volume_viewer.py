@@ -32,21 +32,21 @@ class Ui_VolumeViewer(object):
         self.horizontalLayout_4.setObjectName(u"horizontalLayout_4")
         self.loadDataButton = QToolButton(VolumeViewer)
         self.loadDataButton.setObjectName(u"loadDataButton")
-        sizePolicy = QSizePolicy(QSizePolicy.Preferred, QSizePolicy.Preferred)
+        sizePolicy = QSizePolicy(QSizePolicy.Policy.Preferred, QSizePolicy.Policy.Preferred)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.loadDataButton.sizePolicy().hasHeightForWidth())
         self.loadDataButton.setSizePolicy(sizePolicy)
-        self.loadDataButton.setLayoutDirection(Qt.RightToLeft)
+        self.loadDataButton.setLayoutDirection(Qt.LayoutDirection.RightToLeft)
         self.loadDataButton.setCheckable(False)
-        self.loadDataButton.setPopupMode(QToolButton.InstantPopup)
-        self.loadDataButton.setToolButtonStyle(Qt.ToolButtonIconOnly)
+        self.loadDataButton.setPopupMode(QToolButton.ToolButtonPopupMode.InstantPopup)
+        self.loadDataButton.setToolButtonStyle(Qt.ToolButtonStyle.ToolButtonIconOnly)
 
         self.horizontalLayout_4.addWidget(self.loadDataButton)
 
         self.switchSatCon = QPushButton(VolumeViewer)
         self.switchSatCon.setObjectName(u"switchSatCon")
-        sizePolicy1 = QSizePolicy(QSizePolicy.Fixed, QSizePolicy.Preferred)
+        sizePolicy1 = QSizePolicy(QSizePolicy.Policy.Fixed, QSizePolicy.Policy.Preferred)
         sizePolicy1.setHorizontalStretch(0)
         sizePolicy1.setVerticalStretch(0)
         sizePolicy1.setHeightForWidth(self.switchSatCon.sizePolicy().hasHeightForWidth())
@@ -68,7 +68,7 @@ class Ui_VolumeViewer(object):
 
         self.selectDataLabel = QLabel(VolumeViewer)
         self.selectDataLabel.setObjectName(u"selectDataLabel")
-        self.selectDataLabel.setAlignment(Qt.AlignRight|Qt.AlignTrailing|Qt.AlignVCenter)
+        self.selectDataLabel.setAlignment(Qt.AlignmentFlag.AlignRight|Qt.AlignmentFlag.AlignTrailing|Qt.AlignmentFlag.AlignVCenter)
 
         self.horizontalLayout_5.addWidget(self.selectDataLabel)
 
@@ -85,12 +85,12 @@ class Ui_VolumeViewer(object):
 
         self.volumeViewContainer = QWidget(VolumeViewer)
         self.volumeViewContainer.setObjectName(u"volumeViewContainer")
-        sizePolicy2 = QSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+        sizePolicy2 = QSizePolicy(QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Expanding)
         sizePolicy2.setHorizontalStretch(0)
         sizePolicy2.setVerticalStretch(0)
         sizePolicy2.setHeightForWidth(self.volumeViewContainer.sizePolicy().hasHeightForWidth())
         self.volumeViewContainer.setSizePolicy(sizePolicy2)
-        self.volumeViewContainer.setContextMenuPolicy(Qt.CustomContextMenu)
+        self.volumeViewContainer.setContextMenuPolicy(Qt.ContextMenuPolicy.CustomContextMenu)
 
         self.verticalLayout_2.addWidget(self.volumeViewContainer)
 

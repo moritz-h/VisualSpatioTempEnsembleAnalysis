@@ -117,7 +117,7 @@ def make_custom_3d_volume_item_from_data(data: np.array) -> QCustom3DVolume:
     # QApplication.processEvents()
     # print(volume_item.thread())
 
-    volume_item.setTextureFormat(QImage.Format_Indexed8)
+    volume_item.setTextureFormat(QImage.Format.Format_Indexed8)
     volume_item.setTextureDimensions(data.shape[2], data.shape[1], data.shape[0])
     # volume_item.setTextureData(np.ascontiguousarray(data.flatten()))
     volume_item.setTextureData(data.flatten().tolist())

@@ -21,9 +21,9 @@ class VolumeRenderGraph(Q3DScatter):  # inheriting from Q3DScatter makes it a gr
             exit(-1)
 
         # init graph
-        self.activeTheme().setType(Q3DTheme.ThemeQt)
-        self.setShadowQuality(QAbstract3DGraph.ShadowQualityNone)
-        self.scene().activeCamera().setCameraPreset(Q3DCamera.CameraPresetFront)
+        self.activeTheme().setType(Q3DTheme.Theme.ThemeQt)
+        self.setShadowQuality(QAbstract3DGraph.ShadowQuality.ShadowQualityNone)
+        self.scene().activeCamera().setCameraPreset(Q3DCamera.CameraPreset.CameraPresetFront)
 
         self.setOrthoProjection(True)
 

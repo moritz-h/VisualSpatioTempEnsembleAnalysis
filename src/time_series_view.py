@@ -1,7 +1,7 @@
 import random
 
 import PySide6
-from PySide6.QtGui import QMouseEvent, QPainter, QColor, QPixmap
+from PySide6.QtGui import QMouseEvent, QPainter, QColor, QPixmap, QColorConstants
 from qtpex.qt_widgets.iqchartview import IQChartView
 from PySide6.QtCharts import QChart, QValueAxis
 from PySide6.QtCore import Qt, Signal
@@ -19,7 +19,7 @@ class TimeSeriesViewWidget(IQChartView):
     def __init__(self, data: dict, parent=None):
         super().__init__(QChart(), parent)
 
-        self.setRenderHint(QPainter.Antialiasing)
+        self.setRenderHint(QPainter.RenderHint.Antialiasing)
 
         self.data = data
         self.data_keys = [g for g in groups if g in self.data and not g.startswith("experiment")]
@@ -119,9 +119,9 @@ class TimeSeriesViewWidget(IQChartView):
             self.axises[key]["y_axis"] = y_axis
 
             for group_or_k in self.data_keys + [self.start_key, self.end_key]:
-                self.chart().addAxis(x_axis, Qt.AlignBottom)
+                self.chart().addAxis(x_axis, Qt.AlignmentFlag.AlignBottom)
                 self.line_serieses[key][group_or_k].attachAxis(x_axis)
-                self.chart().addAxis(y_axis, Qt.AlignLeft)
+                self.chart().addAxis(y_axis, Qt.AlignmentFlag.AlignLeft)
                 self.line_serieses[key][group_or_k].attachAxis(y_axis)
 
             x_axis.setVisible(False)
@@ -170,9 +170,9 @@ class TimeSeriesViewWidget(IQChartView):
 
     def save_screenshot(self, rand_int: int = None):
         pixmap = QPixmap(self.size())
-        pixmap.fill(Qt.transparent)
+        pixmap.fill(QColorConstants.Transparent)
         painter = QPainter(pixmap)
-        painter.setRenderHint(QPainter.Antialiasing)
+        painter.setRenderHint(QPainter.RenderHint.Antialiasing)
         self.render(painter)
 
         if rand_int is None:

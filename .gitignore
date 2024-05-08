@@ -12,3 +12,6 @@ cache/*
 !cache/README.md
 
 venv/
+
+screenshots/*
+!screenshots/vamled_9176.png

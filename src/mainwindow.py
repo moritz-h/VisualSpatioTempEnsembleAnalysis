@@ -131,7 +131,7 @@ class MainWindow(QMainWindow):
         self.left_transfer_function = TransferFunctionWidget("linear")  #, #x_range=(min(self.min_),
                                                                        #         max(self.max_at_p_percent)))
         self.tab_ui.transferFunctionContainer.addWidget(self.left_transfer_function)
-        self.left_transfer_function.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+        self.left_transfer_function.setSizePolicy(QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Expanding)
         self.left_transfer_function.changed_signal.connect(lambda: self.update_color_table(
             self.left_transfer_function, self.leftUi.volume_renderer))
         self.tab_ui.applyTfToBoth.clicked.connect(lambda: self.right_transfer_function.copy_from_other_tf_widget(
@@ -165,7 +165,7 @@ class MainWindow(QMainWindow):
                                                   dissim_measure=ProjectionWidget.DissimilarityMeasure.S4,
                                                   part_strat=ProjectionWidget.PartitionStrategy.NonOverlapping,
                                                   temp_p_size=ProjectionWidget.TemporalPatchSize.Full)
-        self.projection_widget.setSizePolicy(QSizePolicy.Fixed, QSizePolicy.Fixed)
+        self.projection_widget.setSizePolicy(QSizePolicy.Policy.Fixed, QSizePolicy.Policy.Fixed)
         self.projection_widget.setFixedSize(550, 550)
         self.ui.projection_container.addWidget(self.projection_widget)
 
@@ -572,7 +572,7 @@ class MainWindow(QMainWindow):
 
         def make_set_enabled_time_series_as_feature(k):
             # TODO: stop setting checked if it is last one
-            return lambda state: self.projection_widget.update_enabled_times_series(k, state == Qt.Checked)
+            return lambda state: self.projection_widget.update_enabled_times_series(k, state == Qt.CheckState.Checked.value)
 
         # add checkbuttons
         for i, key in enumerate(time_series_namings_keys):
@@ -589,9 +589,9 @@ class MainWindow(QMainWindow):
 
         def make_set_enabled_group_as_features(group):
             def fn(state):
-                self.projection_widget.update_enabled_group(group, state == Qt.Checked)
-                self.time_series_view_widget_1.update_enabled_group(group, state == Qt.Checked)
-                self.time_series_view_widget_2.update_enabled_group(group, state == Qt.Checked)
+                self.projection_widget.update_enabled_group(group, state == Qt.CheckState.Checked.value)
+                self.time_series_view_widget_1.update_enabled_group(group, state == Qt.CheckState.Checked.value)
+                self.time_series_view_widget_2.update_enabled_group(group, state == Qt.CheckState.Checked.value)
                 # TODO: stop setting checked if group is last one that is checked
             return fn
 
@@ -623,7 +623,7 @@ class MainWindow(QMainWindow):
         opacity_axis.setTitleText("Opacity")
         tf.opacity_axis = opacity_axis
 
-        tf.chart().addAxis(tf.opacity_axis, Qt.AlignLeft)
+        tf.chart().addAxis(tf.opacity_axis, Qt.AlignmentFlag.AlignLeft)
 
         tf.chart().axisX().setLabelsVisible(True)
 
@@ -641,8 +641,8 @@ class MainWindow(QMainWindow):
         tf.sat_axis = saturation_axis
         tf.con_axis = concentration_axis
 
-        tf.chart().addAxis(saturation_axis, Qt.AlignBottom)
-        tf.chart().addAxis(concentration_axis, Qt.AlignBottom)
+        tf.chart().addAxis(saturation_axis, Qt.AlignmentFlag.AlignBottom)
+        tf.chart().addAxis(concentration_axis, Qt.AlignmentFlag.AlignBottom)
 
         concentration_axis.setVisible(True)
         saturation_axis.setVisible(True)

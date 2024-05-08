@@ -9,7 +9,7 @@ import numpy
 import scipy.stats
 import sklearn
 import sklearn.manifold
-from PySide6.QtGui import QPainter, QColor, QCursor, QFont, QBrush, QPixmap
+from PySide6.QtGui import QPainter, QColor, QCursor, QFont, QBrush, QPixmap, QColorConstants
 from PySide6.QtWidgets import QSizePolicy, QGraphicsTextItem, QStyleOptionGraphicsItem
 from qtpex.qt_utility.series import find_point_idx
 from qtpex.qt_widgets.iqchartview import IQChartView
@@ -27,7 +27,7 @@ import io
 import pickle
 from s4_util.Siamese.layers import CUSTOM_KERAS_LAYERS
 from s4_util.Siamese.data_loading import downsample_volume
-from s4_util import PythonExtras
+from s4_util import PythonExtras  # need the import for pickle
 import numpy as np
 import umap
 
@@ -334,9 +334,9 @@ class ProjectionWidget(IQChartView):
         for group in self.data_keys:
             halo_series = QScatterSeries()
             self.halo_serieses[group] = halo_series
-            halo_series.setBorderColor(Qt.transparent)
+            halo_series.setBorderColor(QColorConstants.Transparent)
             halo_series.setSelectedColor(QColor(0, 0, 0, 255))
-            halo_series.setColor(Qt.transparent)
+            halo_series.setColor(QColorConstants.Transparent)
             halo_series.setMarkerSize(self.series_marker_size + 4)
             if group.startswith("experiment"):
                 halo_series.setMarkerShape(halo_series.MarkerShape.MarkerShapeStar)
@@ -354,7 +354,7 @@ class ProjectionWidget(IQChartView):
             series = ConfigurableScatterSeries()
             self.serieses[group] = series
 
-            series.setBorderColor(Qt.transparent)
+            series.setBorderColor(QColorConstants.Transparent)
             series.clicked.connect(make_point_clicked_on_group_closure(group))
             series.hovered.connect(make_point_hovered_on_group_closure(group))
             series.setMarkerSize(self.series_marker_size)
@@ -406,7 +406,7 @@ class ProjectionWidget(IQChartView):
         self.x_axis = QValueAxis()
         self.x_axis.setTickCount(2)
         self.x_axis.setRange(-self.eps, 1 + self.eps)
-        chart.addAxis(self.x_axis, Qt.AlignBottom)
+        chart.addAxis(self.x_axis, Qt.AlignmentFlag.AlignBottom)
         for series in self.serieses.values():
             series.attachAxis(self.x_axis)
         for halo_series in self.halo_serieses.values():
@@ -415,7 +415,7 @@ class ProjectionWidget(IQChartView):
         self.y_axis = QValueAxis()
         self.y_axis.setTickCount(2)
         self.y_axis.setRange(-self.eps, 1 + self.eps)
-        chart.addAxis(self.y_axis, Qt.AlignLeft)
+        chart.addAxis(self.y_axis, Qt.AlignmentFlag.AlignLeft)
         for series in self.serieses.values():
             series.attachAxis(self.y_axis)
         for halo_series in self.halo_serieses.values():
@@ -436,10 +436,10 @@ class ProjectionWidget(IQChartView):
 
         self.mouse_button = None
 
-        size = QSizePolicy(QSizePolicy.Preferred, QSizePolicy.Preferred)
+        size = QSizePolicy(QSizePolicy.Policy.Preferred, QSizePolicy.Policy.Preferred)
         self.setSizePolicy(size)
 
-        self.setRenderHint(QPainter.Antialiasing)
+        self.setRenderHint(QPainter.RenderHint.Antialiasing)
 
         # ---
         # experimental groups are not enabled by default
@@ -463,7 +463,7 @@ class ProjectionWidget(IQChartView):
         # set font
         text_color = QColor(21, 21, 21)
         for tl in self.text_labels.values():
-            font = QFont("Inter", 20, QFont.Bold)
+            font = QFont("Inter", 20, QFont.Weight.Bold)
             tl.setFont(font)
             tl.setDefaultTextColor(text_color)
 
@@ -484,9 +484,9 @@ class ProjectionWidget(IQChartView):
 
     def save_projection_as_screenshot(self, randint=None):
         pixmap = QPixmap(self.size())
-        pixmap.fill(Qt.transparent)
+        pixmap.fill(QColorConstants.Transparent)
         painter = QPainter(pixmap)
-        painter.setRenderHint(QPainter.Antialiasing)
+        painter.setRenderHint(QPainter.RenderHint.Antialiasing)
         self.render(painter)
 
         if randint is None:
@@ -955,8 +955,8 @@ class ProjectionWidget(IQChartView):
 
         # show legend on the left
         chart_legend.setVisible(False)
-        chart_legend.setFont(QFont("Inter", 20, QFont.Bold))
-        chart_legend.setAlignment(Qt.AlignLeft)
+        chart_legend.setFont(QFont("Inter", 20, QFont.Weight.Bold))
+        chart_legend.setAlignment(Qt.AlignmentFlag.AlignLeft)
         # for group in self.get_enabled_data_keys():
         #     chart_legend.markers(self.spline_serieses[group])[0].setVisible(True)
         # for group in self.get_not_enabled_data_keys():
