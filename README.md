@@ -6,7 +6,7 @@ The repository provides code and data used in the publication [Visual Ensemble A
 
 # Reproduce results
 
-[Git](https://git-scm.com/) must be installed and this repository cloned ````.
+[Git](https://git-scm.com/) must be installed and this repository cloned or downloaded.
 All commands are expected to be run in the cloned directory `.../VisualSpatioTempEnsembleAnalysis>`.
 
 ## Set Up Python Environment
