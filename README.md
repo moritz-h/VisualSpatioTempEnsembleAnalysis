@@ -39,7 +39,7 @@ Unzip the content of this file to the [data/](./data) directory.
 Otherwise, follow the steps described in [Reproduce Data Preprocessing](#reproduce-data-preprocessing).
 
 ### Reproduce Data Preprocessing
-To reproduce the data preprocessing from scratch, you can use the provided convenience script: [reproduce_preprocessing.py](reproduce_preprocessing.py) by calling ``python ./reproduce_preprocessing.py`` which should generate the same results as extracting the [data/data.zip](./data/data.zip) to the [data/](./data) directory.
+To reproduce the data preprocessing from scratch, you can use the provided convenience script: [reproduce_preprocessing.py](reproduce_preprocessing.py) (tbd.) by calling ``python ./reproduce_preprocessing.py`` which should generate the same results as extracting the [data/data.zip](./data/data.zip) to the [data/](./data) directory.
 The script will do the following:
 
 1. Create a (temporary) data directory (in the following referenced by `odata/`) to store the original data.
