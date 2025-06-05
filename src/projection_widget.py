@@ -469,7 +469,7 @@ class ProjectionWidget(IQChartView):
 
         self.update_attributes()
 
-        self.chart().plotAreaChanged.connect(self.update_labels())
+        self.chart().plotAreaChanged.connect(self.update_labels)
 
         # chart background
         chart.setBackgroundBrush(QBrush(QColor(238, 238, 238)))
