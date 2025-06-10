@@ -1,4 +1,4 @@
-﻿# Visual Ensemble Analysis of Fluid Flow in Porous Media across Simulation Codes and Experiment
+# Visual Ensemble Analysis of Fluid Flow in Porous Media across Simulation Codes and Experiment
 
 The repository provides code and data used in the publication [Visual Ensemble Analysis of Fluid Flow in Porous Media across Simulation Codes and Experiment](https://doi.org/10.1007/s11242-023-02019-y).
 
