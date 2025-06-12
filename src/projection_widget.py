@@ -819,7 +819,7 @@ class ProjectionWidget(IQChartView):
             n_neighbors = max(2, int(len(
                 self.get_enabled_data_keys()) / 2)) if self.data_red_mode == self.DataReductionMode.GROUP else 15
             ret.append((self.ProjAlgorithm.TSNE, lambda x: sklearn.manifold.TSNE(n_components=dim, perplexity=n_neighbors,
-                                                   metric="precomputed").fit_transform(x)))
+                                                   init='random', metric="precomputed").fit_transform(x)))
         if len(ret) == 0:
             raise RuntimeError("unknown projection algorithm: {}".format(self.proj_alg))
 

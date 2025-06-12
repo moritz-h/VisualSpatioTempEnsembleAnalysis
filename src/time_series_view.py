@@ -118,10 +118,11 @@ class TimeSeriesViewWidget(IQChartView):
             y_axis.setTitleText(time_series_namings[key])
             self.axises[key]["y_axis"] = y_axis
 
+            self.chart().addAxis(x_axis, Qt.AlignmentFlag.AlignBottom)
+            self.chart().addAxis(y_axis, Qt.AlignmentFlag.AlignLeft)
+
             for group_or_k in self.data_keys + [self.start_key, self.end_key]:
-                self.chart().addAxis(x_axis, Qt.AlignmentFlag.AlignBottom)
                 self.line_serieses[key][group_or_k].attachAxis(x_axis)
-                self.chart().addAxis(y_axis, Qt.AlignmentFlag.AlignLeft)
                 self.line_serieses[key][group_or_k].attachAxis(y_axis)
 
             x_axis.setVisible(False)
